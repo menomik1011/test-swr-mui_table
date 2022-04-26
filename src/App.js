@@ -9,6 +9,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import './App.css';
 import useSWR from 'swr';
 import { useState } from 'react';
+import useApi from './swrhooks';
 
 function createData(city, population2000, population2010) {
   return { city, population2000, population2010};
@@ -26,11 +27,8 @@ const columns = [
 //   createData('Gingerbread', 356, 16.0, 49, 3.9),
 // ];
 
-const fetcher = (url) => fetch(url).then((res)=>res.json());
-
-
 function App() {
-  const {data, error} = useSWR("https://node-login-jwt-production.up.railway.app/home/test", fetcher);
+  const { data, error } = useApi();
   let rows = []
   let rows2 = [];
   if (error) return "An error has occurred.";
