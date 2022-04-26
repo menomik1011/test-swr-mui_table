@@ -6,10 +6,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid';
-import './App.css';
-import useSWR from 'swr';
-import { useState } from 'react';
 import useApi from './swrhooks';
+import './App.css';
 
 function createData(city, population2000, population2010) {
   return { city, population2000, population2010};
