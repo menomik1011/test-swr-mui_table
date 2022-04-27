@@ -121,11 +121,11 @@ function App() {
     </div>
   );
 }
-// zja
+
 export default App;
 
 function PData({ states }) {
-  const { stateData, isLoading, isError } = useStateHook(states);
+  const { stateData, isError } = useStateHook(states);
   if (isError) return "An error has occurred.";
   // if (isLoading) return "Loading...";
 
