@@ -10,6 +10,7 @@ import useApi from "./swrhooks";
 import "./App.css";
 import useStateHook from "./useStateHook";
 import React, { useState, useCallback } from "react";
+import RadioContent from "./RadioContent";
 
 function createData(city, population2000, population2010) {
   return { city, population2000, population2010 };
@@ -48,20 +49,17 @@ function App() {
   let rows = [];
   let rows2 = [];
 
-  const callState = useCallback(
-    (e) => {
-      // setView([]);
-      e.preventDefault();
-      setStates("Texas");
-      //  const { stateData } = useStateHook("Texas");
+  const callState = useCallback((e) => {
+    // setView([]);
+    e.preventDefault();
+    setStates("Texas");
+    //  const { stateData } = useStateHook("Texas");
     //   const v = [];
     //   stateData?.table.map((value) => v.push(value));
     //   console.log(v);
     //   setView(v);
     //   console.log("isLoading::", isLoading);
-    },
-    []
-  );
+  }, []);
 
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";
@@ -81,7 +79,7 @@ function App() {
 
   return (
     <div style={{ display: "flex" }}>
-      <div className="App" style={{ border:'2px solid black'}}>
+      <div className="App" style={{ border: "2px solid black" }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -107,16 +105,28 @@ function App() {
             </TableBody>
           </Table>
         </TableContainer>
-        <div style={{ height: 500, width: "100%", background: "white", border:'2px solid black' }}>
+        <div
+          style={{
+            height: 500,
+            width: "100%",
+            background: "white",
+            border: "2px solid black",
+          }}
+        >
           <DataGrid columns={columns} rows={rows2} pageSize={25} />
         </div>
       </div>
-      <div style={{width:'300px', border:'2px solid black'}}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <h1>데이터</h1>
-          <button onClick={callState}>검색</button>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ width: "300px", border: "2px solid black", padding:'1rem' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <h1>데이터</h1>
+            <button onClick={callState}>검색</button>
+          </div>
+          <PData states={states} />
         </div>
-        <PData states={states}/>
+        <div style={{ width: "300px", border: "2px solid black", padding:'1rem' }}>
+          <RadioContent />
+        </div>
       </div>
     </div>
   );
